@@ -30,7 +30,7 @@ describe('Starwars SW.API application', () => {
 
     render(<App />);
     expect(window.fetch).toHaveBeenCalledTimes(1);
-    expect(window.fetch).toHaveBeenCalledWith('https://swapi.dev/api/people/');
+    expect(window.fetch).toHaveBeenCalledWith('https://swapi.dev/api/people/?page=1');
     for (let character of data.results) {
       expect(await screen.findByText(character.name)).toBeInTheDocument();
     }
