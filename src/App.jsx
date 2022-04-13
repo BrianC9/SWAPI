@@ -11,10 +11,13 @@ function App() {
   useEffect(() => {
     API.getPeople().then(setCharacters).catch(handleError);
   }, []);
-  function handleError() {}
+  function handleError(error) {
+    setErrorStatus({ hasErorr: true, errorMessage: error.message });
+  }
   console.log(characters);
   return (
-    <div>
+    <>
+      {errorStatus.hasErorr && <h2>{errorStatus.errorMessage}</h2>}
       <ul>
         {characters.results?.map((char, ind) => (
           <li key={char.name + ind}>{char.name}</li>
@@ -23,7 +26,7 @@ function App() {
       {data.results.map((personaje) => {
         return <p key={personaje.name}>{personaje.name}</p>;
       })}
-    </div>
+    </>
   );
 }
 
